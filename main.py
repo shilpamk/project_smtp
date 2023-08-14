@@ -1,5 +1,6 @@
 import os
 import smtplib
+
 from email.message import EmailMessage
 
 SMTP_SERVER = 'smtp.gmail.com'
@@ -26,15 +27,16 @@ for file in all_files:
 
       message.add_attachment(f_data, maintype='application', subtype='octet-strem', filename=f_name)
 
+def send_email():
+   try:
+      with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
+         
+         server.login(sender_email, appPassword)  
+         print('Login Success') 
 
-try:
-   with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
-        
-        server.login(sender_email, appPassword)  
-        print('Login Success') 
+         server.send_message(message)
+         print(f'Email has been sent to {receivers_email}')
+      
+   except Exception as e:
+      print (e)
 
-        server.send_message(message)
-        print(f'Email has been sent to {receivers_email}')
-   
-except Exception as e:
-   print (e)
