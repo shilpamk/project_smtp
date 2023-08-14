@@ -5,7 +5,7 @@ from email.message import EmailMessage
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
 
-sender_email = 'smtp2023.test1@gmail.com'
+sender_email = os.environ.get('USER_EMAIL')
 receivers_email = 'smtp2023.test2@gmail.com'
 
 appPassword = os.environ.get('APP_PASSWORD')
