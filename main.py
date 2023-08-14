@@ -1,7 +1,13 @@
 import os
 import smtplib
-
+import logging
 from email.message import EmailMessage
+
+
+logging.basicConfig(filename='temp.log', level=logging.INFO,
+                    format='%(asctime)s:%(name)s:%(message)s')
+
+
 
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 465
@@ -32,11 +38,11 @@ def send_email():
       with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
          
          server.login(sender_email, appPassword)  
-         print('Login Success') 
+         logging.info('Login Success') 
 
          server.send_message(message)
-         print(f'Email has been sent to {receivers_email}')
+         logging.info(f'Email has been sent to {receivers_email}')
       
    except Exception as e:
-      print (e)
+      logging.info(e)
 
